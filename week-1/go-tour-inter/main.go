@@ -1,10 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+
+	"itsjayeshrathi.dev/go/go-tour-inter/interfaces"
+)
 
 type Vertex struct {
-	X int
-	Y int
+	X float64
+	Y float64
 }
 
 var (
@@ -15,6 +20,21 @@ var (
 )
 
 // ? slices are just a view and not full fledged container they are like magic mirror which can show the array elements they are storing as well as you can modify those thngs
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+// ? I declared a type over here in order to add method to any type it should be in same PACKAGE
+
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
 
 func main() {
 	i, j := 42, 130
@@ -37,9 +57,23 @@ func main() {
 	a := make([]int, 5)
 	fmt.Println(a)
 
+	fmt.Printf("%.2f", v.Abs())
+
+	fmt.Println("===============================")
+
+	var inter interfaces.I
+	var t *interfaces.T
+	inter = t
+	interfaces.Describe(inter)
+	inter.M()
+	inter = &interfaces.T{S: "hello"}
+
+	interfaces.Describe(inter)
+	inter.M()
+
 }
 
-// ? range is only for slices and maps 
+// ? range is only for slices and maps
 func Add(nums ...int) int {
 	sum := 0
 	for _, num := range nums {
@@ -65,7 +99,6 @@ func Add(nums ...int) int {
 //     }
 //     return img
 // }
-
 
 // func main() {
 // 	pic.Show(Pic)

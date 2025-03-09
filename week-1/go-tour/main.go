@@ -148,11 +148,10 @@ func E() {
 
 func main() {
 
-
 	// fmt.Println("Hello World ", rand.Uint32())
 
 	// ? inside the function i can use :=
-
+	fmt.Println("The time is,", time.Now())
 	// a, b := Swap("bob", "anon")
 	// fmt.Printf("bob and anon swapped and became %v and %v\n", a, b)
 
