@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"math"
 	"math/cmplx"
+	"math/rand"
 	"runtime"
 	"time"
+	"unsafe"
 )
 
 // ? by convention the package name is same as the last element of import path for eg. math/rand then I can use rand in order to access the func
@@ -146,12 +148,30 @@ func E() {
 	D(0)
 }
 
+func pow(x, n, lim float64) float64 {
+	if v := math.Pow(x, n); v < lim {
+		return v
+	} else {
+
+		fmt.Printf("%g >= %g\n", v, lim)
+	}
+	// can't use v here, though
+	return lim
+}
+
 func main() {
 
-	// fmt.Println("Hello World ", rand.Uint32())
+	fmt.Println("Hello World ", rand.Intn(10))
 
 	// ? inside the function i can use :=
 	fmt.Println("The time is,", time.Now())
+	fmt.Println(
+		pow(3, 2, 10),
+		pow(3, 3, 20),
+	)
+
+	i := 232432423894
+	fmt.Println("working on it",unsafe.Sizeof(i))
 	// a, b := Swap("bob", "anon")
 	// fmt.Printf("bob and anon swapped and became %v and %v\n", a, b)
 
